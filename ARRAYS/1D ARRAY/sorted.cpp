@@ -1,20 +1,23 @@
+//to check if an array is sorted and rotated
+
 #include<bits/stdc++.h>
 using namespace std;
-int main() {
-    int n;
-    cin >> n;
-    vector<int> arr(n);
-    for (int i = 0; i < n; i++) {
-        cin >> arr[i];
+bool check(vector<int>&arr){
+    int count=0;
+    int n=arr.size();
+    for(int i=0;i<n;i++){
+        if(arr[i]>arr[i+1]){
+            count++;
+        }
     }
-    
-    // Sort the array
-    sort(arr.begin(), arr.end());
-    
-    // Print the sorted array
-    for (int i = 0; i < n; i++) {
-        cout << arr[i] << " ";
+    return count<=1;
+}
+int main(){
+    vector<int>arr={5,6,7,8,9,10,1,2,3,4};
+    if(check(arr)){
+        cout<<"Array is sorted and Roated"<<endl;
+    }else{
+        cout<<"Array is not sorted and Roated"<<endl;
     }
-    
     return 0;
 }
