@@ -1,5 +1,6 @@
 //to check if an array is sorted and rotated
-
+//TC=O(N)
+//LC 1752
 #include<bits/stdc++.h>
 using namespace std;
 bool check(vector<int>&arr){
