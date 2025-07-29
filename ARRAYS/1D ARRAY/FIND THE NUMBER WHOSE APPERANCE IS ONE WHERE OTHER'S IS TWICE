@@ -1,0 +1,43 @@
+//to find the number whose appearance is one where others is twice
+
+//using hashing(valid for positive integers only)
+//tc=O(3N)
+//space complexity=O(maximum element in the array)
+#include<bits/stdc++.h>
+using namespace std;
+#include<bits/stdc++.h>
+class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+        int n=nums.size();
+        int maxi=nums[0];
+        for(int i=0;i<n;i++){
+            maxi=max(nums[i],maxi);
+        }
+        vector<int> hash(maxi+1,0);
+        for(int i=0;i<n;i++){
+            hash[nums[i]]++;
+        }
+        for(int i=0;i<n;i++){
+            if(hash[nums[i]]==1) return nums[i];
+        }
+        return -1;
+    }
+};
+
+//using XOR operation
+//tc=O(N)   
+//space complexity=O(1)
+#include<bits/stdc++.h> 
+using namespace std;
+class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+        int n=nums.size();
+        int x=0;
+        for(int i=0;i<n;i++){
+            x=x^nums[i];
+        }
+        return x;
+    }
+};
