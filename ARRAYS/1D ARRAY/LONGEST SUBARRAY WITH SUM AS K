@@ -1,0 +1,33 @@
+//to find the length of the longest subarray with a sum of k
+//tc=O(N^3)
+//space complexity=O(1)
+
+//using hashing
+#include<bits/stdc++.h> 
+using namespace std;
+class Solution {
+  public:
+    int longestSubarray(vector<int>& arr, int k) {
+        // code here
+        int n=arr.size();
+        map<long long,int>presum;
+        long long sum=0;
+        int maxlen=0;
+        for(int i=0;i<n;i++){
+            sum+=arr[i];
+            if(sum==k){
+                maxlen=max(maxlen,i+1);
+            }
+            long long rem=sum-k;
+            if(presum.find(rem)!=presum.end()){
+                int len=i-presum[rem];
+                maxlen=max(maxlen,len);
+            }
+            if(presum.find(sum)==presum.end()){
+                presum[sum]=i;
+            }
+            
+        }
+        return maxlen;
+    }
+};
