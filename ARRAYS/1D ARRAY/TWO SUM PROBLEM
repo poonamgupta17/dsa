@@ -1,0 +1,24 @@
+//to return the indices of elements in an array whose sum is equal to the target value
+//using hash map
+//time complexity: O(NlogN)
+//space complexity: O(N)
+#include <bits/stdc++.h>
+using namespace std;
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        map<int,int>mpp;
+        for(int i=0;i<nums.size();i++){
+            int a=nums[i];
+            int more=target-a;
+            if(mpp.find(more)!=mpp.end()){
+                int k=mpp[more];
+                return {i,mpp[more]};
+            }
+            mpp[a]=i;
+        }
+        return {-1,-1};
+    }
+};
+
+ 
