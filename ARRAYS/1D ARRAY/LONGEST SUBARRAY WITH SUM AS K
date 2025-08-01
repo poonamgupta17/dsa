@@ -1,6 +1,6 @@
 //to find the length of the longest subarray with a sum of k
-//tc=O(N^3)
-//space complexity=O(1)
+//tc=O(NlogN) 
+//space complexity=O(N)
 
 //using hashing
 #include<bits/stdc++.h> 
