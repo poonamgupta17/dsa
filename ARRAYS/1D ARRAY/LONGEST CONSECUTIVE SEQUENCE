@@ -1,0 +1,4 @@
+//lc-128
+//to return the length of longest consecutive sequence in an array
+//time complexity: O(n)
+//space complexity: O(n)
