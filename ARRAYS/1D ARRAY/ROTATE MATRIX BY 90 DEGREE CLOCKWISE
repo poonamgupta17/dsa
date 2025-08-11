@@ -1,0 +1,21 @@
+//lc-48
+//to rotate a matrix/image by 90 degrees clockwise in place(not using extra space)
+//time complexity: O(n^2)
+//space complexity: O(1)
+#include<bits/stdc++.h>
+using namespace std;
+class Solution {
+public:
+    void rotate(vector<vector<int>>& matrix) {
+        int n=matrix.size();
+        for(int i=0;i<n-1;i++){
+            for(int j=i+1;j<n;j++){
+                swap(matrix[i][j],matrix[j][i]);
+            }
+        }
+        for(int i=0;i<n;i++){
+            reverse(matrix[i].begin(),matrix[i].end());
+        }
+        
+    }
+};
