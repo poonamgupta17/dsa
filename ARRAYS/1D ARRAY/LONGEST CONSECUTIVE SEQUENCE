@@ -1,4 +1,29 @@
 //lc-128
 //to return the length of longest consecutive sequence in an array
-//time complexity: O(n)
-//space complexity: O(n)
+//time complexity: O(n+nlogn)
+//space complexity: O(1)
+#include<bits/stdc++.h>
+using namespace std;
+class Solution {
+public:
+    int longestConsecutive(vector<int>& nums) {
+        int n=nums.size();
+        if(n==0)return 0;
+        int longest=1;
+        int cnt=0;
+        int slongest=INT_MIN;;
+        sort(nums.begin(),nums.end());
+        for(int i=0;i<n;i++){
+            if(nums[i]-1==slongest){
+                cnt+=1;
+                slongest=nums[i];
+            }
+            else if(nums[i]!=slongest){
+                cnt=1;
+                slongest=nums[i];
+            }
+            longest=max(cnt,longest);    
+        }
+        return longest;
+    }
+};
