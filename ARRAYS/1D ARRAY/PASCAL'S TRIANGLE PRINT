@@ -1,3 +1,4 @@
+//LC-118
 //to print pascal's triangle for given number of rows numRows
 //tc=O(n^2)
 //sc=O(1)
