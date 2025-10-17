@@ -25,3 +25,43 @@ class Solution {
         
     }
 };
+// to merge two sorted arrays where first array has enough space to hold elements of second array
+//tc=O((n+m)log(n+m))
+//sc=O(1)
+class Solution {
+public:
+    void swapifgreater(vector<int>& arr1,vector<int>& arr2,int ind1,int ind2){
+        if(arr1[ind1]>arr2[ind2]){
+            swap(arr1[ind1],arr2[ind2]);
+        }
+    }
+    void merge(vector<int>& arr1, int m, vector<int>& arr2, int n) {
+        int len=m+n;
+        int gap=(len)/2+(len)%2;
+        while(gap>0){
+            int left=0;
+            int right=left+gap;
+            while(right<len){
+                //arr1 & arr2
+                if(left<m && right>=m){
+                    swapifgreater(arr1,arr2,left,right-m);
+                }
+                //arr2 & arr2
+                else if(left>=m){
+                    swapifgreater(arr2,arr2,left-m,right-m);
+                }
+                //arr1 & arr1
+                else{
+                    swapifgreater(arr1,arr1,left,right);
+                }
+                left++,right++;
+            }
+        if(gap==1)break;
+        gap=(gap/2)+(gap%2);
+        }
+        for(int i=0;i<n;i++){
+            arr1[m+i]=arr2[i];
+        }
+        
+    }
+};
