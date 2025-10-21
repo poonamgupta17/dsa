@@ -1,0 +1,25 @@
+//to find the missing and the repeating number in an array of size n containing numbers from 1 to n
+//tc=O(n)
+//sc=O(n)
+#include<bits/stdc++.h>
+using namespace std;
+class Solution {
+  public:
+    vector<int> findTwoElement(vector<int>& arr) {
+        // code here
+        int n=arr.size();
+        int missing=-1,repeating=-1;
+        int hash[n+1]={0};
+        for(int i=0;i<n;i++){
+            hash[arr[i]]++;
+            }
+        for(int i=1;i<=n;i++){
+            if(hash[i]==2)repeating=i;
+            else if(hash[i]==0)missing=i;
+            
+            if(missing!=-1 && repeating!=-1)break;
+        }    
+            
+        return {repeating,missing};
+    }
+};
