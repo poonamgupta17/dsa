@@ -1,4 +1,6 @@
 //to find the missing and the repeating number in an array of size n containing numbers from 1 to n
+
+//better approach
 //tc=O(n)
 //sc=O(n)
 #include<bits/stdc++.h>
@@ -21,5 +23,27 @@ class Solution {
         }    
             
         return {repeating,missing};
+    }
+};
+//optimal approach
+//tc=O(n)
+//sc=O(1)
+class Solution {
+public:
+    vector<int> findErrorNums(vector<int>& nums) {
+        long long n=nums.size();
+        long long sn= ((n)*(n+1))/2;
+        long long sn2=((n)*(n+1)*((2*n)+1))/6;
+        long long s=0,s2=0;
+        for(int i=0;i<n;i++){
+            s=s+nums[i];
+            s2=s2+(nums[i]*nums[i]);
+        }
+        long long val1=s-sn;
+        long long val2=s2-sn2;
+        val2=(val2)/(val1);
+        long long x=((val1)+(val2))/2;  //x=repeating,y=missing
+        long long y=x-(val1);
+        return{int(x),int(y)};      
     }
 };
