@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "count subarray with given sum": "cpp"
+        "count subarray with given sum": "cpp",
+        "count inversions in array": "cpp"
     }
 }
