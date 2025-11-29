@@ -1,0 +1,44 @@
+//to find the number of times a sorted array has been rotated with unique elements
+//time complexity: O(log n)
+#include<bits/stdc++.h>
+using namespace std;
+class Solution {
+  public:
+    int findKRotation(vector<int> &nums) {
+        // Code Here
+       
+        int ans = INT_MAX;
+        int index=-1;
+        int n = nums.size();
+        int low = 0;
+        int high = n - 1;
+        while (low <= high) {
+            int mid = (low + high) / 2;
+            if (nums[low] <= nums[high]) {
+                if(nums[low]<ans){
+                    index=low;
+                    ans=nums[low];
+                }
+                break;
+            }
+            
+            if (nums[low] <= nums[mid]) {
+                if(nums[low]<ans){
+                    index=low;
+                    ans=nums[low];
+                }
+                low = mid + 1;
+            } 
+            
+            else {                      //(nums[mid] <= nums[high]) 
+                if(nums[mid]<ans){
+                    index=mid;
+                    ans=nums[mid];
+                }
+                high = mid - 1;
+            }
+        }
+        
+        return index;
+    }
+};
