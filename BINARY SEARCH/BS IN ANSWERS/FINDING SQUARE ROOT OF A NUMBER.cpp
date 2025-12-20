@@ -1,6 +1,6 @@
 //tc=o(log n)
 
-class Solution {
+class Solution { 
   public:
     int floorSqrt(int n) {
         // code here
@@ -8,7 +8,7 @@ class Solution {
         int high=n;
         int ans=1;
         while(low<=high){
-            long long mid=high-(high-low)/2;
+            long long mid=low+(high-low)/2;
             long long val=mid*mid;
             if(val<=n){
                 ans=mid;
