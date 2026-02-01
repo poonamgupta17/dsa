@@ -1,6 +1,5 @@
 //LC-206. Reverse Linked List
-//TC: O(N)
-//SC: O(1)
+
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -12,7 +11,10 @@ struct ListNode {
     ListNode(int x) : val(x), next(nullptr) {}
     ListNode(int x, ListNode *next) : val(x), next(next) {}
 };
-//iterative approach
+
+//changing links
+//TC: O(N)
+//SC: O(1)
 class Solution {
 public:
     ListNode* reverseList(ListNode* head) {
@@ -25,5 +27,27 @@ public:
             temp=front;
         }
         return prev;
+    }
+};
+//reversing in terms of values
+//TC: O(2N)
+//SC: O(N)
+
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        ListNode* temp=head;
+        stack<int>st;
+        while(temp!=NULL){
+            st.push(temp->val);
+            temp=temp->next;
+        }
+        temp=head;
+        while(temp!=NULL){
+            temp->val=st.top();
+            st.pop();
+            temp=temp->next;
+        }
+        return head;
     }
 };
