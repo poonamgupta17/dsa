@@ -1,4 +1,4 @@
-//lc-61 to rotate a linked list to the right by k places, where k is non-negative.
+//lc-61 to rotate a linked list to the right by k places, where k is non-negative number.
 
 #include<bits/stdc++.h>
 using namespace std;
@@ -10,7 +10,7 @@ struct ListNode {
    ListNode(int x, ListNode *next) : val(x), next(next) {}
  };
 
-//TC: O(2N)
+//TC: O(2N) where N is the number of nodes in the linked list. We traverse the linked list twice, once to find its length and once to perform the rotation.
 //SC: O(1)
 class Solution {
 public:
