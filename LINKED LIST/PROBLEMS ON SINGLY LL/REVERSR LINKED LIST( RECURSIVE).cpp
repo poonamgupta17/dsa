@@ -1,4 +1,4 @@
-//lc 206. Reverse Linked List
+//lc 206 Reverse Linked List
 //time complexity: O(n)
 //space complexity: O(n)  (recursive stack space)
 
