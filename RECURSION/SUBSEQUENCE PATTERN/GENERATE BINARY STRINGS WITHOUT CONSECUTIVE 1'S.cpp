@@ -1,7 +1,9 @@
 //to return the count of binary strings of length n without consecutive 1's
+//time complexity: O(n)
+//space complexity: O(1)
+
 #include <bits/stdc++.h>
 using namespace std;
-// User function template for C++
 class Solution {
   public:
     // #define ll long long
