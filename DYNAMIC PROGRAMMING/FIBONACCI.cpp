@@ -1,10 +1,21 @@
 //lc-509 fibonacci number
 
-// recursive approach with memoization
-//tc: O(2^n) 
-//sc: O(n+1) for dp array and O(n) for recursive stack space
+//recursive approach
+//t.c: O(2^n)
+//s.c: O(n) for recursive stack space
 #include<bits/stdc++.h>
 using namespace std;
+class Solution {public:
+    int fib(int n) {
+        if(n<=1)return n;
+        return fib(n-1)+fib(n-2);
+    }
+};
+
+//recursive approach with memoization
+//tc: O(n) 
+//sc: O(n+1) for dp array and O(n) for recursive stack space
+
 class Solution {
 public:
     int solve(int n, vector<int>&dp){
