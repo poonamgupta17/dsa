@@ -32,3 +32,37 @@ public:
         return max(solve_for_0th,solve_for_1st);
     }
 };
+
+//bottom up approach
+//tc: O(n)
+//sc: O(n) for dp array
+class Solution {
+public:
+    int rob(vector<int>& nums) {
+        int n=nums.size();
+        if(n==1)return nums[0];
+        vector<int>t(n+1,0);
+        //t[i]=money stolen when we have i houses
+        t[0]=0;
+
+        //case 1: picking 1st house and skipping last house
+        for(int i=1;i<=n-1;i++){
+            int skip=t[i-1];
+            int take=nums[i-1]+ ((i-2>0) ?t[i-2]:0);
+            t[i]=max(skip,take);
+        }
+        int result1=t[n-1];
+        t.clear();
+        //case 2: picking 2nd house(skipping 1st house) and taking the last one
+        t[0]=0;
+        t[1]=0;
+        for(int i=2;i<=n;i++){
+            int skip=t[i-1];
+            int take=nums[i-1]+((i-2>0) ?t[i-2]:0);
+            t[i]=max(skip,take);
+        }
+        int result2=t[n];
+
+        return max(result1,result2);
+    }
+};
