@@ -39,3 +39,23 @@ public:
         return dp[n];
     }
 };
+//space optimized approach
+//tc: O(n)
+//sc: O(1)
+class Solution {
+public:
+    int rob(vector<int>& nums) {
+        int n=nums.size();
+        
+        int prevprev=0;
+        int prev=nums[0];
+        for(int i=2;i<=n;i++){
+            int steal=nums[i-1]+prevprev;
+            int skip=prev;
+            int temp=max(steal,skip);
+            prevprev=prev;
+            prev=temp;
+        }
+        return prev;
+    }
+};
