@@ -66,3 +66,30 @@ public:
         return max(result1,result2);
     }
 };
+
+//space optimized approach
+//tc: O(n)
+//sc: O(1)
+class Solution {
+public:
+    int solve(int f, int l,vector<int>& nums){
+        int prev=0;
+        int prevprev=0;
+        for(int i=f;i<=l;i++){
+            int steal=prev;
+            int skip=nums[i-1]+prevprev;
+            int temp=max(steal,skip);
+            prevprev=prev;
+            prev=temp;
+        }
+        return prev;
+    }
+    int rob(vector<int>& nums) {
+        int n=nums.size();
+        if(n==1)return nums[0];
+        if(n==2)return max(nums[0],nums[1]);
+        int take_1st=solve(1,n-1,nums);
+        int take_2nd=solve(2,n,nums);
+        return max(take_1st,take_2nd);
+    }
+};
