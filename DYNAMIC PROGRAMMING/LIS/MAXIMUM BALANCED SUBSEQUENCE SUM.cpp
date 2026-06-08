@@ -4,7 +4,7 @@
 
 //recursive + memoization(this will give tle)
 //tc= O(n^2) in worst case (when all elements are same)
-//sc= O(n^2) for dp array   
+//sc= O(n^2) for memoization + O(n) for recursion stack  
 #include <bits/stdc++.h>
 using namespace std;
 class Solution {
@@ -39,4 +39,33 @@ public:
     }
 };
 
-//bottom up
+//bottom up(this will give tle as well)
+//tc= O(n^2) 
+//sc= O(n) 
+class Solution {
+public:
+    long long maxBalancedSubsequenceSum(vector<int>& nums) {
+        int n = nums.size();
+        
+        int maxEl = *max_element(begin(nums), end(nums));
+        if(maxEl <= 0) {
+            return maxEl;
+        }
+
+        vector<long long> t(n);
+        for(int i = 0; i<n; i++) {
+            t[i] = nums[i];
+        }
+
+        long long maxSum = INT_MIN;
+        for(int i = 0; i<n; i++) {
+            for(int j = 0; j<i; j++) {
+                if(nums[i] - i >= nums[j] - j) {
+                    t[i] = max<long long>(t[i], t[j] + nums[i]);
+                    maxSum = max<long long>(maxSum, t[i]);
+                }
+            }
+        }
+        return maxSum > maxEl ? maxSum : maxEl;
+    }
+};
