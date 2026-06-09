@@ -47,30 +47,26 @@ public:
         return maxAns;
     }
 };
-//optimal 
+//optimal by lower_bound
+//(lower_bound is used to find the position of element just greater than or equal to the given element in sorted array and we are maintaining a sorted array of increasing subsequence
+//we are replacing the element in sorted array with the current element if it is just greater than or equal to the current element)
+
 //tc= O(nlogn)
 //sc= O(n) for dp array
 class Solution {
 public:
     int lengthOfLIS(vector<int>& nums) {
-        int n = nums.size();
-        vector<int> sorted;
-        
-        for(int i = 0; i<n; i++) {
-            /*
-			     Why lower bound ?
-				 We want increasing subsequence and  hence 
-				 we want to eliminate the duplicates as well.
-				 lower_bound returns iterator to "next greater or equal to"
-			*/
-            auto it = lower_bound(begin(sorted), end(sorted), nums[i]);
-            
-            if(it == end(sorted))
-                sorted.push_back(nums[i]); //greatest : so insert it
-            else
-                *it = nums[i]; //replace
+        int n=nums.size();
+        vector<int>sorted;
+        for(int i=0;i<n;i++){
+            auto it=lower_bound(begin(sorted),end(sorted),nums[i]); //nums[i] just greater than or equal to i
+            if(it==end(sorted)){
+                sorted.push_back(nums[i]); //greater number so add it 
+            }
+            else{
+                *it=nums[i]; //replace the element in sorted array with the current element if it is just greater than or equal to the current element
+            }
         }
-        
-        return (int)sorted.size();
+        return int(sorted.size());
     }
 };
