@@ -47,7 +47,7 @@ public:
         return maxAns;
     }
 };
-//optimal by lower_bound
+//optimal by lower_bound(patience sorting)
 //(lower_bound is used to find the position of element just greater than or equal to the given element in sorted array and we are maintaining a sorted array of increasing subsequence
 //we are replacing the element in sorted array with the current element if it is just greater than or equal to the current element)
 
