@@ -77,3 +77,28 @@ class Solution {
         return t[m][n];
     }
 };
+//using lcs 
+class Solution {
+  public:
+    int minSuperSeq(string &s1, string &s2) {
+        // code here
+        int n=s1.length();
+        int m=s2.length();
+        vector<vector<int>>t(n+1,vector<int>(m+1));//Create n+1 rows, where each row is a vector of size m+1.(a matrix initialized as 0)
+        
+        for(int i=1;i<=n;i++){
+            for(int j=1;j<=m;j++){
+                if(s1[i-1]==s2[j-1]){
+                    t[i][j]= 1+t[i-1][j-1];
+                }
+                else{
+                t[i][j]= max(t[i-1][j],t[i][j-1]);
+                }
+            }
+        }
+        int lcs=t[n][m];
+        int x=m-lcs;
+        int y=n-lcs;
+        return lcs+x+y;
+    }
+};
