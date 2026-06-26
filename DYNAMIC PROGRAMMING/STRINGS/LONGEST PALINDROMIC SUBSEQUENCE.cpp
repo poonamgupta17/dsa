@@ -51,6 +51,31 @@ public:
     int longestPalindromeSubseq(string s) {
         int n=s.length();
         memset(t,-1,sizeof(t));
-        return solve(0,n,s);
+        return solve(0,n-1,s);
+    }
+};
+//blue print approach
+//tc: O(n^2)
+//sc: O(n^2)
+class Solution {
+public:
+    int longestPalindromeSubseq(string s) {
+        int n=s.length();
+        vector<vector<int>>t(n,vector<int>(n));
+        for(int l=1;l<=n;l++){
+            for(int i=0;l+i-1<n;i++){
+                int j=l+i-1;
+                if(i==j){
+                    t[i][j]=1;
+                }
+                else if(s[i]==s[j]){
+                    t[i][j]=2+t[i+1][j-1];   
+                }
+                else{
+                    t[i][j]=max(t[i+1][j],t[i][j-1]);
+                }
+            }
+        }
+        return t[0][n-1];
     }
 };
