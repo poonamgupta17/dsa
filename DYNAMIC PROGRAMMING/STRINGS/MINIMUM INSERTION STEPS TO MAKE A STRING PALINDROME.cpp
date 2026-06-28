@@ -28,3 +28,25 @@ public:
         return solve(0,n-1,s);
     }
 };
+//blue print approach
+//tc= O(n^2)
+//sc= O(n^2)
+class Solution {
+public:
+    int minInsertions(string s) {
+        int n=s.length();
+        vector<vector<int>>t(n,vector<int>(n,0));
+        for(int l=2;l<=n;l++){
+            for(int i=0;l+i-1<n;i++){
+                int j=l+i-1;
+                if(s[i]==s[j]){
+                    t[i][j]=t[i+1][j-1];
+                }
+                else{
+                    t[i][j]=1+min(t[i+1][j],t[i][j-1]);
+                }
+            }
+        }
+        return t[0][n-1];
+    }
+};
