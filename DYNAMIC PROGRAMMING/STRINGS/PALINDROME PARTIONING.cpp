@@ -1,7 +1,7 @@
 //lc-131
 
 //recursive
-//tc= O(n*2^n)
+//tc= O(n^2*2^n)( isPalindrome() scans every time + substr()-->	n² × 2^n )
 //sc= O(n) for recursion stack + O(n) for curr vector
 #include <bits/stdc++.h>
 using namespace std;
@@ -43,7 +43,8 @@ public:
 };
 
 //blueprint(by filling the dp table)
-//tc= O(n^2)
+//tc= O(n*2^n) for recursion + O(n^2) for dp table ( substr() copies strings --> n × 2^n )
+// "Copy = ×n, Scan = ×n. If both happen repeatedly during backtracking, answer becomes ×n²."
 //sc= O(n^2) for dp table + O(n) for recursion stack
 class Solution {
 public:
