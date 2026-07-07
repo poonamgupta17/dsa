@@ -13,23 +13,23 @@ public:
     vector<vector<pair<ll,ll>>>t;
     int mod=1e9+7;
     pair<ll,ll> solve(int i,int j,vector<vector<int>>& grid){
-        if(t[i][j]!=make_pair(LLONG_MIN,LLONG_MAX))return t[i][j];
-        if(i==m-1 && j==n-1)return {grid[i][j],grid[i][j]};
+        if(t[i][j].first!=LLONG_MIN)return t[i][j];
+        if(i==m-1 && j==n-1)return t[i][j]={grid[i][j],grid[i][j]};
          
         ll maxval=LLONG_MIN;
         ll minval=LLONG_MAX;
 
         //down
         if(i+1<m){
-            auto [downMax,downMin]=solve(i+1,j,grid);
-            maxval=max({maxval,grid[i][j]*downMax,grid[i][j]*downMin});
-            minval=min({minval,grid[i][j]*downMax,grid[i][j]*downMin});
+            pair<ll,ll> down=solve(i+1,j,grid);
+            maxval=max({maxval,grid[i][j]*down.first,grid[i][j]*down.second});
+            minval=min({minval,grid[i][j]*down.first,grid[i][j]*down.second});
         } 
         //right
         if(j+1<n){
-            auto [rightMax,rightMin]=solve(i,j+1,grid);
-            maxval=max({maxval,grid[i][j]*rightMax,grid[i][j]*rightMin});
-            minval=min({minval,grid[i][j]*rightMax,grid[i][j]*rightMin});
+            pair<ll,ll> right=solve(i,j+1,grid);
+            maxval=max({maxval,grid[i][j]*right.first,grid[i][j]*right.second});
+            minval=min({minval,grid[i][j]*right.first,grid[i][j]*right.second});
         }
         return t[i][j]= {maxval,minval};
     
@@ -38,8 +38,8 @@ public:
         m=grid.size();
         n=grid[0].size();
         t=vector<vector<pair<ll,ll>>>(m,vector<pair<ll,ll>>(n,{LLONG_MIN,LLONG_MAX}));
-        auto [maxProd,minProd]=solve(0,0,grid);
-        return maxProd <0 ? -1:maxProd % mod;
+        auto res=solve(0,0,grid);
+        return res.first <0 ? -1: res.first % mod;
     }
 };
 
@@ -78,7 +78,7 @@ public:
                 t[i][j].second=min({grid[i][j]*upmax,grid[i][j]*upmin,grid[i][j]*leftmax,grid[i][j]*leftmin});
             }
         }
-        auto [maxPrd,minPrd]=t[m-1][n-1];
+        ll maxPrd=t[m-1][n-1].first;
         
         return maxPrd<0 ? -1: maxPrd % mod;
     }
