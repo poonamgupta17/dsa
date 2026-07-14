@@ -10,15 +10,15 @@ using namespace std;
 class Solution {
 public:
     int m,n;
-    bool canSurv(int i,int j,int mid,vector<vector<int>>& dungeon){
+    bool canSurv(int i,int j,int currHealth,vector<vector<int>>& dungeon){
         if(i>=m || j>=n){
             return false;
         }
-        mid+=dungeon[i][j];
-        if(mid<=0)return false;
+        currHealth+=dungeon[i][j];
+        if(currHealth<=0)return false;
 
         if(i==m-1 && j==n-1)return true;
-        return canSurv(i,j+1,mid,dungeon) || canSurv(i+1,j,mid,dungeon);
+        return canSurv(i,j+1,currHealth,dungeon) || canSurv(i+1,j,currHealth,dungeon);
     }
     int calculateMinimumHP(vector<vector<int>>& dungeon) {
         m=dungeon.size();
