@@ -28,9 +28,6 @@ public:
     }
     int maxProfit(vector<int>& prices) {
         n=prices.size();
-        if(n==1){
-            return 0;
-        }
         memset(t,-1,sizeof(t));
         return solve(0,1,prices);
     }
@@ -43,7 +40,6 @@ public:
     int maxProfit(vector<int>& prices) {
        int n=prices.size();
         vector<vector<int>>dp(n+2,vector<int>(2,0));
-        dp[n][0]=dp[n][1]=0;
         for(int i=n-1;i>=0;i--){
             for(int j=0;j<=1;j++){
                 if(j){
@@ -55,8 +51,7 @@ public:
                     //sell
                     dp[i][j]=max(prices[i] +dp[i+2][1],0+dp[i+1][0]); 
                 }  
-            }
-            
+            }  
         }
         return dp[0][1]; 
     }
@@ -81,12 +76,10 @@ public:
                     //sell
                     curr[j]=max(prices[i] +prev2[1],0+prev1[0]); 
                 }  
-                prev2=prev1;
-                prev1=curr;
-            }
-            
+            } 
+            prev2=prev1;
+            prev1=curr;  
         }
         return curr[1]; 
-    
     }
 };
