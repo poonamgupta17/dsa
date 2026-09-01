@@ -1,6 +1,29 @@
+//lc-1
 //to return the indices of elements in an array whose sum is equal to the target value
+
+//brute force
+//time complexity: O(N^2)
+//space complexity: O(1)
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        int n=nums.size();
+        vector<int>ans;
+        for(int i=0;i<n;i++){
+            for(int j=i+1;j<=n-1;j++){
+                if(nums[i]+nums[j]==target){
+                    ans.push_back(i);
+                    ans.push_back(j);
+                    break;
+                }
+            }
+        }
+        return ans;
+    }
+};
+
 //using hash map
-//time complexity: O(NlogN)
+//time complexity: O(N)
 //space complexity: O(N)
 #include <bits/stdc++.h>
 using namespace std;
